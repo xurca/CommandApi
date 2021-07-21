@@ -56,7 +56,7 @@ https://docs.docker.com/engine/reference/commandline/docker/
 
 
 ## dotnet ef
-dotnet ef migrations add AddCommandsToDb
+dotnet ef migrations add AddCommandsToDb  
 dotnet ef database update
 
 ## sql
