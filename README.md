@@ -22,7 +22,7 @@ dotnet add .\test\CommandApi.Tests\CommandApi.Tests.csproj reference .\src\Comma
 dotnet build  
 dotnet run  
 
-dotnet user-secrets set "<user>" "<password>"  
+dotnet user-secrets set "[user]" "[password]"  
 
 Windows: %APPDATA%\Microsoft\UserSecrets  
 Linux/OSX: ~/.microsoft/usersecrets  
@@ -50,10 +50,10 @@ docker ps
 docker ps -all  
 -> list all containers that have run
 
-docker start <container id or name>
+docker start [container id or name]
 -> start an existing container
 
-docker stop <container id or name>
+docker stop [container id or name]
 -> stop a running container
 
 https://docs.docker.com/engine/reference/commandline/docker/
@@ -79,10 +79,11 @@ VALUES ('Apply Migrations to DB', 'Entity Framework Core Command Line',
 `
 insert into "Commands" ("HowTo", "Platform", "CommandLine")
 values ('Create an EF migration', 'Entity Framework Package Manager Console',
-'add-migration <name of migration>');
+'add-migration [name of migration]');
 `
 
 `
 insert into "Commands" ("HowTo", "Platform", "CommandLine")
 values ('Apply Migrations to DB', 'Entity Framework Package Manager Console',
 'update-database');
+`
