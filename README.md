@@ -22,6 +22,10 @@ dotnet add .\test\CommandApi.Tests\CommandApi.Tests.csproj reference .\src\Comma
 dotnet build  
 dotnet run  
 
+dotnet user-secrets set "<user>" "<password>"  
+
+Windows: %APPDATA%\Microsoft\UserSecrets  
+Linux/OSX: ~/.microsoft/usersecrets  
 
 ## powershell
 git init  
@@ -82,4 +86,3 @@ values ('Create an EF migration', 'Entity Framework Package Manager Console',
 insert into "Commands" ("HowTo", "Platform", "CommandLine")
 values ('Apply Migrations to DB', 'Entity Framework Package Manager Console',
 'update-database');
-`
