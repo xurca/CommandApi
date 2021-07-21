@@ -6,7 +6,6 @@ dir
 cd ..
 
 ## dotnet
-
 dotnet dev-certs https --trust  
 -> trust local development certificates
 
@@ -25,7 +24,6 @@ dotnet run
 
 
 ## powershell
-
 git init  
 git status  
 git add .  
@@ -55,3 +53,33 @@ docker stop <container id or name>
 -> stop a running container
 
 https://docs.docker.com/engine/reference/commandline/docker/
+
+
+## dotnet ef
+dotnet ef migrations add AddCommandsToDb
+dotnet ef database update
+
+## sql
+`
+insert into "Commands" ("HowTo", "Platform", "CommandLine")
+values ('Create an EF migration', 'Entity Framework Core Command Line',
+'dotnet ef migrations add');
+`
+
+`
+insert into "Commands" ("HowTo", "Platform", "CommandLine")
+VALUES ('Apply Migrations to DB', 'Entity Framework Core Command Line',
+'dotnet ef database update');
+`
+
+`
+insert into "Commands" ("HowTo", "Platform", "CommandLine")
+values ('Create an EF migration', 'Entity Framework Package Manager Console',
+'add-migration <name of migration>');
+`
+
+`
+insert into "Commands" ("HowTo", "Platform", "CommandLine")
+values ('Apply Migrations to DB', 'Entity Framework Package Manager Console',
+'update-database');
+`
