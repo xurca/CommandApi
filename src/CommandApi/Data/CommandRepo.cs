@@ -20,8 +20,6 @@ namespace CommandApi.Data
                 throw new ArgumentNullException(nameof(cmd));
 
             _db.Commands.Add(cmd);
-
-            SaveChanges();
         }
 
         public void Delete(Command cmd)
@@ -46,7 +44,10 @@ namespace CommandApi.Data
 
         public void Update(Command cmd)
         {
-            throw new System.NotImplementedException();
+            if (cmd == null)
+                throw new ArgumentNullException(nameof(cmd));
+
+            _db.Commands.Update(cmd);
         }
     }
 }

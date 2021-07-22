@@ -23,7 +23,7 @@ namespace CommandApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<CommandReadDto>> GetAll() => Ok(_mapper.Map<IEnumerable<CommandReadDto>>(_rep.GetAll()));
 
-        [HttpGet("{id}", Name ="Get")]
+        [HttpGet("{id}", Name = "Get")]
         public ActionResult<CommandReadDto> Get(int id)
         {
             var command = _rep.GetById(id);
@@ -42,6 +42,21 @@ namespace CommandApi.Controllers
             _rep.SaveChanges();
 
             return CreatedAtRoute(nameof(Get), new { id = cmd.Id }, cmd);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<CommandReadDto> Update(int id, CommandUpdateDto cmdDto)
+        {
+            var cmd = _rep.GetById(id);
+
+            if (cmd == null) return NotFound();
+
+            _mapper.Map<CommandUpdateDto, Command>(cmdDto, cmd);
+
+            _rep.Update(cmd);
+            _rep.SaveChanges();
+
+            return NoContent();
         }
     }
 }
