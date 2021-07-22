@@ -4,6 +4,7 @@ using CommandApi.Data;
 using CommandApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using CommandApi.Dtos;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace CommandApi.Controllers
 {
@@ -45,13 +46,35 @@ namespace CommandApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<CommandReadDto> Update(int id, CommandUpdateDto cmdDto)
+        public ActionResult Update(int id, CommandUpdateDto cmdDto)
         {
             var cmd = _rep.GetById(id);
 
             if (cmd == null) return NotFound();
 
             _mapper.Map<CommandUpdateDto, Command>(cmdDto, cmd);
+
+            _rep.Update(cmd);
+            _rep.SaveChanges();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult PartialUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
+        {
+            var cmd = _rep.GetById(id);
+
+            if (cmd == null) return NotFound();
+
+            var cmdToPatch = _mapper.Map<CommandUpdateDto>(cmd);
+
+            patchDoc.ApplyTo(cmdToPatch, ModelState);
+
+            if (!TryValidateModel(cmdToPatch))
+                return ValidationProblem(ModelState);
+
+            _mapper.Map<CommandUpdateDto, Command>(cmdToPatch, cmd);
 
             _rep.Update(cmd);
             _rep.SaveChanges();
