@@ -81,5 +81,18 @@ namespace CommandApi.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var cmd = _rep.GetById(id);
+
+            if (cmd == null) return NotFound();
+
+            _rep.Delete(cmd);
+            _rep.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
