@@ -63,6 +63,10 @@ https://docs.docker.com/engine/reference/commandline/docker/
 dotnet ef migrations add AddCommandsToDb  
 dotnet ef database update
 
+## unit test
+dotnet test  
+
+
 ## sql
 `
 insert into "Commands" ("HowTo", "Platform", "CommandLine")
