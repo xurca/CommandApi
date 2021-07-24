@@ -66,6 +66,7 @@ dotnet ef database update
 ## unit test
 dotnet test  
 
+'<method name>_<expected result>_<condition>'
 
 ## sql
 `
