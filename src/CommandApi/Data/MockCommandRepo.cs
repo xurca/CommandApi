@@ -4,7 +4,7 @@ using CommandApi.Models;
 
 namespace CommandApi.Data
 {
-    public class MockCommandRepo : ICommandRepo
+    public class MockCommandRepo //: ICommandRepo
     {
         public void Create(Command cmd)
         {
