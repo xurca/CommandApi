@@ -37,7 +37,6 @@ git commit -m "initial commit"
 git remote add origin https://github.com/xurca/CommandApi.git  
 git push -u origin master  
 
-
 ## docker
 docker run --name some-postgres -e POSTGRES_PASSWORD=1a2s3d4f -p 5432:5432 -d postgres  
 -> -p [internal port] : [external port]  
@@ -60,6 +59,7 @@ https://docs.docker.com/engine/reference/commandline/docker/
 
 
 ## dotnet ef
+dotnet tool install --global dotnet-ef
 dotnet ef migrations add AddCommandsToDb  
 dotnet ef database update
 
