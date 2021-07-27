@@ -68,6 +68,10 @@ dotnet test
 
 '<method name>_<expected result>_<condition>'
 
+## azure devops
+https://dev.azure.com/xurca/
+
+
 ## sql
 `
 insert into "Commands" ("HowTo", "Platform", "CommandLine")
