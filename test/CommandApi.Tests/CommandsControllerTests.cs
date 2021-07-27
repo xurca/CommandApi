@@ -110,6 +110,63 @@ namespace CommandApi.Tests
             Assert.IsType<ActionResult<CommandReadDto>>(result);
         }
 
+        [Fact]
+        public void Create_ReturnsCorrectResourceType_WhenValidObjectSubmitted()
+        {
+            //Arrange
+            mockRepo.Setup(repo => repo.GetById(1))
+                    .Returns(new Command
+                    {
+                        Id = 1,
+                        HowTo = "mock",
+                        Platform = "Mock",
+                        CommandLine = "Mock"
+                    });
+            var controller = new CommandsController(mockRepo.Object, mapper);
+            //Act
+            var result = controller.Create(new CommandCreateDto { });
+            //Assert
+            Assert.IsType<ActionResult<CommandReadDto>>(result);
+        }
+
+        [Fact]
+        public void Create_Returns201Created_WhenValidObjectSubmitted()
+        {
+            //Arrange
+            mockRepo.Setup(repo => repo.GetById(1))
+                    .Returns(new Command
+                    {
+                        Id = 1,
+                        HowTo = "mock",
+                        Platform = "Mock",
+                        CommandLine = "Mock"
+                    });
+            var controller = new CommandsController(mockRepo.Object, mapper);
+            //Act
+            var result = controller.Create(new CommandCreateDto { });
+            //Assert
+            Assert.IsType<CreatedAtRouteResult>(result.Result);
+        }
+
+        [Fact]
+        public void Update_Returns204NoContent_WhenValidObjectSubmitted()
+        {
+            //Arrange
+            mockRepo.Setup(repo => repo.GetById(1))
+                    .Returns(new Command
+                    {
+                        Id = 1,
+                        HowTo = "mock",
+                        Platform = "Mock",
+                        CommandLine = "Mock"
+                    });
+            var controller = new CommandsController(mockRepo.Object, mapper);
+            //Act
+            var result = controller.Update(1, new CommandUpdateDto { });
+            //Assert
+            Assert.IsType<NoContentResult>(result);
+        }
+
         private IEnumerable<Command> GetCommands(int num)
         {
             var commands = new List<Command>();
