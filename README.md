@@ -69,7 +69,9 @@ dotnet test
 '<method name>_<expected result>_<condition>'
 
 ## azure devops
-https://dev.azure.com/xurca/
+https://dev.azure.com/xurca/  
+alter user postgres with encrypted password '[some password]'  
+create user [some user] with encrypted password '[some password]'  
 
 
 ## sql
